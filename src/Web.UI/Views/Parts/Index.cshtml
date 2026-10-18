@@ -1,0 +1,12 @@
+@model Page<Part>
+@{ ViewData["Title"] = "Parça ve stok"; ViewData["SearchHint"] = "Parça kodu veya adı ile ara"; }
+<div class="page-heading"><div><p class="eyebrow">SERVİS ATÖLYESİ / KAYITLAR</p><h1>Parça ve stok</h1><p>Stokları güncel tutun, kritik seviyeleri zamanında fark edin.</p></div><a class="btn btn-primary" asp-action="Edit">+ Yeni parça</a></div>
+<section class="panel"><partial name="_Search"/>
+@if (Model.Items.Any(x => x.Stock <= x.MinimumStock)) {
+<div class="alert alert-warning m-3" role="alert"><strong>Stok uyarısı:</strong> Bu sayfada @Model.Items.Count(x => x.Stock <= x.MinimumStock) parça kritik stok seviyesinde veya altında. İşaretli parçaları inceleyip stok girişi planlayınız.</div>
+}
+@if (Model.Items.Count == 0) { <div class="empty"><h2>Kayıt bulunamadı</h2><p>Aramanızı değiştirin veya “Yeni parça” düğmesiyle ilk kaydı oluşturun.</p></div> } else {
+<div class="table-responsive"><table class="table"><thead><tr><th scope="col">Kod</th><th scope="col">Parça adı</th><th scope="col">Birim fiyat</th><th scope="col">Stok</th><th scope="col">Kritik eşik</th><th scope="col">Durum</th><th scope="col">İşlem</th></tr></thead><tbody>
+@foreach (var x in Model.Items) { <tr class="@(x.Stock <= x.MinimumStock ? "table-warning" : "")"><td>@(x.Code)</td><td>@(x.Name)</td><td>@((x.PriceCents / 100m).ToString("C2"))</td><td><strong>@(x.Stock)</strong></td><td>@(x.MinimumStock)</td><td>@if (x.Stock == 0) { <span class="badge bg-danger">Stok tükendi</span> } else if (x.Stock <= x.MinimumStock) { <span class="badge bg-warning text-dark">Kritik stok</span> } else { <span class="badge bg-success">Yeterli stok</span> }</td><td><a class="table-link" asp-action="Details" asp-route-id="@x.Id">İncele →</a></td></tr> }
+</tbody></table></div> }
+<partial name="_Pager" model="@((Model.Number, Model.TotalPages, Model.Query))"/></section>

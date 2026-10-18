@@ -1,0 +1,11 @@
+@model ServiceForm
+@{ ViewData["Title"] = "Servis formu"; }
+<a class="back-link" asp-action="Index">← Servis listesi</a><div class="page-heading"><div><p class="eyebrow">KAYIT FORMU</p><h1>Servis bilgileri</h1><p>Araç listesindeki mevcut kilometreyi dikkate alın. Kaydettikten sonra kullanılan parçaları ekleyebilirsiniz.</p></div></div>
+<section class="panel form-panel"><form method="post" asp-action="Create">
+<div asp-validation-summary="All" class="text-danger" role="alert"></div><div class="form-grid"><div class="field"><label asp-for="VehicleId" class="form-label"></label><select asp-for="VehicleId" asp-items="ViewBag.Vehicles" class="form-select"><option value="">Seçiniz</option></select><span asp-validation-for="VehicleId" class="text-danger"></span></div>
+<div class="field"><label asp-for="Date" class="form-label"></label><input asp-for="Date" class="form-control"/><span asp-validation-for="Date" class="text-danger"></span></div>
+<div class="field"><label asp-for="Mileage" class="form-label"></label><input asp-for="Mileage" class="form-control"/><span asp-validation-for="Mileage" class="text-danger"></span></div>
+<div class="field"><label asp-for="Description" class="form-label"></label><textarea asp-for="Description" class="form-control" rows="4"></textarea><span asp-validation-for="Description" class="text-danger"></span></div>
+<div class="field"><label asp-for="Labor" class="form-label"></label><input asp-for="Labor" type="text" inputmode="decimal" class="form-control"/><small class="form-text">Örnek: 1250,50 (TL)</small><span asp-validation-for="Labor" class="text-danger"></span></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary" type="submit">Kaydet</button><a class="btn btn-light" asp-action="Index">Vazgeç</a></div></form></section>

@@ -1,0 +1,12 @@
+@model VehicleForm
+@{ ViewData["Title"] = "Araç formu"; }
+<a class="back-link" asp-action="Index">← Araç listesi</a><div class="page-heading"><div><p class="eyebrow">KAYIT FORMU</p><h1>Araç bilgileri</h1><p>Önce müşteri kaydı oluşturun. Plaka benzersiz olmalı; kilometre düşürülemez.</p></div></div>
+<section class="panel form-panel"><form method="post" asp-action="Edit">
+<input asp-for="Id" type="hidden"/><input asp-for="Version" type="hidden"/><div asp-validation-summary="All" class="text-danger" role="alert"></div><div class="form-grid"><div class="field"><label asp-for="CustomerId" class="form-label"></label><select asp-for="CustomerId" asp-items="ViewBag.Customers" class="form-select"><option value="">Seçiniz</option></select><span asp-validation-for="CustomerId" class="text-danger"></span></div>
+<div class="field"><label asp-for="Plate" class="form-label"></label><input asp-for="Plate" class="form-control"/><span asp-validation-for="Plate" class="text-danger"></span></div>
+<div class="field"><label asp-for="Brand" class="form-label"></label><input asp-for="Brand" class="form-control"/><span asp-validation-for="Brand" class="text-danger"></span></div>
+<div class="field"><label asp-for="Model" class="form-label"></label><input asp-for="Model" class="form-control"/><span asp-validation-for="Model" class="text-danger"></span></div>
+<div class="field"><label asp-for="Year" class="form-label"></label><input asp-for="Year" class="form-control"/><span asp-validation-for="Year" class="text-danger"></span></div>
+<div class="field"><label asp-for="Mileage" class="form-label"></label><input asp-for="Mileage" class="form-control"/><span asp-validation-for="Mileage" class="text-danger"></span></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary" type="submit">Kaydet</button><a class="btn btn-light" asp-action="Index">Vazgeç</a></div></form></section>

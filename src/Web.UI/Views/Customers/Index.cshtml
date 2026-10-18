@@ -1,0 +1,9 @@
+@model Page<Customer>
+@{ ViewData["Title"] = "Müşteriler"; ViewData["SearchHint"] = "Ad soyad veya telefon ile ara"; }
+<div class="page-heading"><div><p class="eyebrow">SERVİS ATÖLYESİ / KAYITLAR</p><h1>Müşteriler</h1><p>Müşteri ilişkileriniz için güncel ve düzenli bir kayıt defteri.</p></div><a class="btn btn-primary" asp-action="Edit">+ Yeni müşteri</a></div>
+<section class="panel"><partial name="_Search"/>
+@if (Model.Items.Count == 0) { <div class="empty"><h2>Kayıt bulunamadı</h2><p>Aramanızı değiştirin veya “Yeni müşteri” düğmesiyle ilk kaydı oluşturun.</p></div> } else {
+<div class="table-responsive"><table class="table"><thead><tr><th scope="col">Ad soyad</th><th scope="col">Telefon</th><th scope="col">E-posta</th><th scope="col">İşlem</th></tr></thead><tbody>
+@foreach (var x in Model.Items) { <tr><td>@(x.Name)</td><td>@(x.Phone)</td><td>@(x.Email ?? "—")</td><td><a class="table-link" asp-action="Details" asp-route-id="@x.Id">İncele →</a></td></tr> }
+</tbody></table></div> }
+<partial name="_Pager" model="@((Model.Number, Model.TotalPages, Model.Query))"/></section>

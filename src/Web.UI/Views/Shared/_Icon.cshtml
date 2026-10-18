@@ -1,0 +1,12 @@
+@model string
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+@switch (Model)
+{
+    case "Home": <path d="M3 10l9-7 9 7v11h-7v-7h-4v7H3z"/> break;
+    case "Customers": <circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0112 0v3m1-16a3 3 0 010 6m3 10v-3a6 6 0 00-2-4"/> break;
+    case "Vehicles": <path d="M3 16v-5l3-6h12l3 6v5M3 11h18M5 16v3m14-3v3M6 14h2m8 0h2M3 16h18"/> break;
+    case "Services": <path d="M14 4a5 5 0 006 6l-10 10a3 3 0 01-4-4L16 6"/><path d="M14 4l3 3 4-4"/> break;
+    case "Parts": <path d="M3 7l9-4 9 4v11l-9 4-9-4zm0 0l9 4 9-4m-9 4v11M7 5l10 4"/> break;
+    default: <path d="M4 18l5-5 4 3 7-10m-5 0h5v5"/> break;
+}
+</svg>

@@ -1,0 +1,9 @@
+@model Page<Vehicle>
+@{ ViewData["Title"] = "Araçlar"; ViewData["SearchHint"] = "Plaka, marka veya müşteri ile ara"; }
+<div class="page-heading"><div><p class="eyebrow">SERVİS ATÖLYESİ / KAYITLAR</p><h1>Araçlar</h1><p>Her araç için tek kayıt; kilometre ve servis geçmişini birlikte izleyin.</p></div><a class="btn btn-primary" asp-action="Edit">+ Yeni araç</a></div>
+<section class="panel"><partial name="_Search"/>
+@if (Model.Items.Count == 0) { <div class="empty"><h2>Kayıt bulunamadı</h2><p>Aramanızı değiştirin veya “Yeni araç” düğmesiyle ilk kaydı oluşturun.</p></div> } else {
+<div class="table-responsive"><table class="table"><thead><tr><th scope="col">Plaka</th><th scope="col">Araç</th><th scope="col">Müşteri</th><th scope="col">Kilometre</th><th scope="col">İşlem</th></tr></thead><tbody>
+@foreach (var x in Model.Items) { <tr><td>@(x.Plate)</td><td>@(x.Brand + " " + x.Model)</td><td>@(x.Customer.Name)</td><td>@(x.Mileage.ToString("N0") + " km")</td><td><a class="table-link" asp-action="Details" asp-route-id="@x.Id">İncele →</a></td></tr> }
+</tbody></table></div> }
+<partial name="_Pager" model="@((Model.Number, Model.TotalPages, Model.Query))"/></section>

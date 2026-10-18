@@ -1,0 +1,4 @@
+@model (int Number, int TotalPages, string? Query)
+<nav class="pager" aria-label="Sayfalama"><span>Sayfa @Model.Number / @Model.TotalPages</span>
+@if (Model.Number > 1) { <a asp-action="Index" asp-route-page="@(Model.Number - 1)" asp-route-q="@Model.Query">← Önceki</a> }
+@if (Model.Number < Model.TotalPages) { <a asp-action="Index" asp-route-page="@(Model.Number + 1)" asp-route-q="@Model.Query">Sonraki →</a> }</nav>

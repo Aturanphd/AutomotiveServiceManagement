@@ -1,0 +1,10 @@
+@model PartForm
+@{ ViewData["Title"] = "Parça formu"; }
+<a class="back-link" asp-action="Index">← Parça listesi</a><div class="page-heading"><div><p class="eyebrow">KAYIT FORMU</p><h1>Parça bilgileri</h1><p>Yeni parça sıfır stokla açılır. Kaydettikten sonra detay ekranından stok girişi yapın.</p></div></div>
+<section class="panel form-panel"><form method="post" asp-action="Edit">
+<input asp-for="Id" type="hidden"/><input asp-for="Version" type="hidden"/><div asp-validation-summary="All" class="text-danger" role="alert"></div><div class="form-grid"><div class="field"><label asp-for="Code" class="form-label"></label><input asp-for="Code" class="form-control"/><span asp-validation-for="Code" class="text-danger"></span></div>
+<div class="field"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control"/><span asp-validation-for="Name" class="text-danger"></span></div>
+<div class="field"><label asp-for="Price" class="form-label"></label><input asp-for="Price" type="text" inputmode="decimal" class="form-control"/><small class="form-text">Örnek: 1250,50 (TL)</small><span asp-validation-for="Price" class="text-danger"></span></div>
+<div class="field"><label asp-for="MinimumStock" class="form-label"></label><input asp-for="MinimumStock" class="form-control"/><span asp-validation-for="MinimumStock" class="text-danger"></span></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary" type="submit">Kaydet</button><a class="btn btn-light" asp-action="Index">Vazgeç</a></div></form></section>

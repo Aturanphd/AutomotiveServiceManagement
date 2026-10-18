@@ -1,0 +1,9 @@
+@model Page<ServiceRecord>
+@{ ViewData["Title"] = "Servis kayıtları"; ViewData["SearchHint"] = "Plaka veya işlem açıklaması ile ara"; }
+<div class="page-heading"><div><p class="eyebrow">SERVİS ATÖLYESİ / KAYITLAR</p><h1>Servis kayıtları</h1><p>Araç kabulünden teslimine kadar bütün işlemleri takip edin.</p></div><a class="btn btn-primary" asp-action="Create">+ Servis aç</a></div>
+<section class="panel"><partial name="_Search"/>
+@if (Model.Items.Count == 0) { <div class="empty"><h2>Kayıt bulunamadı</h2><p>Aramanızı değiştirin veya “Servis aç” düğmesiyle ilk kaydı oluşturun.</p></div> } else {
+<div class="table-responsive"><table class="table"><thead><tr><th scope="col">Kayıt</th><th scope="col">Araç</th><th scope="col">Tarih</th><th scope="col">Durum</th><th scope="col">Toplam</th><th scope="col">İşlem</th></tr></thead><tbody>
+@foreach (var x in Model.Items) { <tr><td>@("SRV-" + x.Id.ToString("D4"))</td><td>@(x.Vehicle.Plate)</td><td>@(x.Date.ToString("dd.MM.yyyy"))</td><td>@(x.StatusText)</td><td>@((x.TotalCents / 100m).ToString("C2"))</td><td><a class="table-link" asp-action="Details" asp-route-id="@x.Id">İncele →</a></td></tr> }
+</tbody></table></div> }
+<partial name="_Pager" model="@((Model.Number, Model.TotalPages, Model.Query))"/></section>

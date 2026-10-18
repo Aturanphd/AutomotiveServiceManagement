@@ -1,0 +1,9 @@
+@model CustomerForm
+@{ ViewData["Title"] = "Müşteri formu"; }
+<a class="back-link" asp-action="Index">← Müşteri listesi</a><div class="page-heading"><div><p class="eyebrow">KAYIT FORMU</p><h1>Müşteri bilgileri</h1><p>Müşterinin iletişim bilgilerini girin. E-posta isteğe bağlıdır.</p></div></div>
+<section class="panel form-panel"><form method="post" asp-action="Edit">
+<input asp-for="Id" type="hidden"/><input asp-for="Version" type="hidden"/><div asp-validation-summary="All" class="text-danger" role="alert"></div><div class="form-grid"><div class="field"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control"/><span asp-validation-for="Name" class="text-danger"></span></div>
+<div class="field"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control"/><span asp-validation-for="Phone" class="text-danger"></span></div>
+<div class="field"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control"/><span asp-validation-for="Email" class="text-danger"></span></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary" type="submit">Kaydet</button><a class="btn btn-light" asp-action="Index">Vazgeç</a></div></form></section>

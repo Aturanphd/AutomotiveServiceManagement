@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>@ViewData["Title"] · Servis Atölyesi</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/><link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/><link rel="stylesheet" href="~/css/premium.css" asp-append-version="true"/></head>
+<body><a class="skip" href="#main">İçeriğe geç</a><div class="app-shell">
+<aside class="sidebar"><a class="brand" asp-controller="Home" asp-action="Index"><span class="brand-icon">S</span> Servis Atölyesi</a><p class="sidebar-caption">OTOMOTİV SERVİS YÖNETİMİ</p>
+<nav aria-label="Ana menü">
+@foreach (var item in new[] { ("Home", "Genel bakış", "01"), ("Customers", "Müşteriler", "02"), ("Vehicles", "Araçlar", "03"), ("Services", "Servis kayıtları", "04"), ("Parts", "Parça ve stok", "05") }) {
+<a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == item.Item1 ? "active" : "")" asp-controller="@item.Item1" asp-action="Index"><partial name="_Icon" model="item.Item1"/>@item.Item2</a>
+}
+</nav><div class="sidebar-help"><strong>İlk kez mi kullanıyorsunuz?</strong><p>Müşteriden servis teslimine, adım adım ilerleyin.</p><a asp-controller="Home" asp-action="Help">Kullanım rehberi →</a></div><small>MCSD · Bitirme projesi / v1</small></aside>
+<div class="workspace"><header class="topbar"><span>ATÖLYE PANELİ <b>/ @ViewData["Title"]</b></span><div class="topbar-right"><a asp-controller="Home" asp-action="Help">Kullanım rehberi</a><span class="demo-dot">Yerel demo</span><span class="profile-avatar" aria-label="Ahmet Turan">AT</span></div></header>
+<main id="main">
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status">@success</div> }
+@if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert">@error</div> }
+@RenderBody()
+</main><footer>Servis Atölyesi <span>Müşteri, araç ve stok bilgileri tek yerde.</span></footer></div></div>
+<script src="~/js/site.js" asp-append-version="true"></script>@await RenderSectionAsync("Scripts", required: false)</body></html>
